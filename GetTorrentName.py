@@ -57,10 +57,13 @@ class GetTorrentFileName(object):
       file_name = file_list[line].rstrip()
       with open(file_name,'r') as f:
         raw_data = f.read()
-        torrent_dic = bencode.bdecode(raw_data)
-        torrent_name = torrent_dic['info']['name']
-        torrent_info = file_name+'\t'+torrent_name+'\n'
-        out.write(torrent_info)
+	try:
+          torrent_dic = bencode.bdecode(raw_data)
+          torrent_name = torrent_dic['info']['name']
+          torrent_info = file_name+'\t'+torrent_name+'\n'
+          out.write(torrent_info)
+        except:
+	  pass	
     out.close()
         
   def run(self):
