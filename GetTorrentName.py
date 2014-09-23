@@ -59,7 +59,7 @@ class GetTorrentFileName(object):
         raw_data = f.read()
 	try:
           torrent_dic = bencode.bdecode(raw_data)
-          torrent_name = torrent_dic['info']['name']
+          torrent_name = torrent_dic['info']['name.utf-8']
           torrent_info = file_name+'\t'+torrent_name+'\n'
           out.write(torrent_info)
         except:
